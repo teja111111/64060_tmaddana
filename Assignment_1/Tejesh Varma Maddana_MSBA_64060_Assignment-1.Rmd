@@ -1,0 +1,54 @@
+---
+title: "Tejesh Varma Maddana_MSBA_64060_Assignment -1"
+author: "Tejesh Varma Maddana"
+date: "2023-09-10"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#1.I have downloaded a dataset that has the data a mix of quantitative and qualitative(categorical) variables from the kaggle website and the source link is furnished below for your ready reference :
+Dataset Source reference Link : https://www.kaggle.com/datasets/michau96/restaurant-business-rankings-2020
+
+```{r}
+#2. Importing the Data Set from the above referred souce
+Food_Business <-  read.csv("~/Downloads/archive (3)/Restaurent.csv")
+head(Food_Business)
+```
+#3(i) Printing the Descriptive Statistics of Quantitative Variables
+```{r}
+summary(Food_Business$Unit_Volume)
+```
+#3(ii) Printing the Descriptive Statistics of Categorical Variables 
+```{r}
+summary(Food_Business$Restaurant, Food_Business$Location)
+```
+
+#4. Transformation of a Quantitative Variable
+```{r}
+log_Unit_Volume = log(Food_Business$Unit_Volume)
+log_Unit_Volume
+```
+```{r}
+Food_Business$log_Unit_Volume <- c(log_Unit_Volume)
+Food_Business$log_Unit_Volume
+```
+#5(i)Plot of one Quantitative Variable by considering the plot between number of restaurants in a particular city
+
+```{r}
+location_table = table(Food_Business$Location)
+
+barplot(location_table,1:8 ,xlab = "Cities", ylab = "Number of Restaurants", main="Restaurant Count by Cities", col = rainbow(5))
+```
+
+#5(ii) Plot of ScatterPlot indicating number of restaurants in a particular city
+```{r}
+x = Food_Business$Sales
+y = Food_Business$Unit_Volume
+
+plot(x,y, xlab = "Sales", ylab = "Volume", main = "Restaurant Food Business Sales VS Volume", col = "blue")
+
+```
